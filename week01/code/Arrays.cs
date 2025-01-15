@@ -12,9 +12,19 @@ public static class Arrays
         // Remember: Using comments in your program, write down your process for solving this problem
         // step by step before you write the code. The plan should be clear enough that it could
         // be implemented by another person.
+        // Plan: 
+        // 1. Create an array of n'length'.
+        // 2. Use a loop to populate the array.(fist element is 'number', each subsequent element is the previous element + 'number')
+        // 3. Return the array.
 
-        return []; // replace this return statement with your own
+        double[] result = new double[length];
+        for (int i = 0; i < length; i++)
+        {
+            result[i] = number * (i + 1);
+        }
+        return result; // replace this return statement with your own
     }
+    // DONE
 
     /// <summary>
     /// Rotate the 'data' to the right by the 'amount'.  For example, if the data is 
@@ -29,5 +39,24 @@ public static class Arrays
         // Remember: Using comments in your program, write down your process for solving this problem
         // step by step before you write the code. The plan should be clear enough that it could
         // be implemented by another person.
+        // Plan:
+        // 1.use the modulo operator:  amount % data.Count
+        // 2. If the effective rotation is 0, do nothing.
+        // 3. Use list slicing to rearrange the data.
+        // 4. Use the last amount elements using GetRange() and take the rest of the list up to the last amount elements.
+        // 5. combine the two slices
+        // 6. Update the original list with the rearranged data.
+
+        int rotation = amount % data.Count;
+        if (rotation == 0) return;
+
+        List<int> end = data.GetRange(data.Count - rotation, rotation);
+        List<int> start = data.GetRange(0, data.Count - rotation);
+
+        data.Clear();
+        data.AddRange(end);
+        data.AddRange(start);
+         
     }
 }
+// DONE
